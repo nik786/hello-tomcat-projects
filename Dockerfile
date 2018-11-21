@@ -142,7 +142,7 @@ RUN sed -i '/<\/tomcat-users>/ i\<role rolename="manager-gui"/>' /usr/local/tomc
     && sed -i 's|<Connector port=\"8080\"|<Connector port=\"9090\"|g' /usr/local/tomcat/conf/server.xml
 
 
-#COPY mavenproject1-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/mavenproject1-1.0-SNAPSHOT.war
+COPY mavenproject1-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/mavenproject1-1.0-SNAPSHOT.war
 
  
 
