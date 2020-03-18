@@ -1,12 +1,37 @@
 - hosts: dev
+#  become: true
+#  become_method: sudo
+#  become_user: jenkins
   connection: local
+  pre_tasks:
+    - name: Ensure Pip is installed.
+      package:
+        name: python-pip
+        state: present
+
+    - name: Ensure OpenShift client is installed.
+      pip:
+        name: openshift
+        state: present   
   tasks:
+#     - name: Printing the environment
+#       debug:
+#         msg: "{{ lookup('env','KUBECONFIG_DIR') }}"
+#
+#     - name: docker login
+#       shell: bash /var/lib/jenkins/workspace/test-k8s-free/docker-login.sh
+#       register: d
+#     - debug:
+#         msg: "{{ d.stdout }}"
+#
+
      - name: Create a k8s namespace
        k8s:
          name: testing
          api_version: v1
          kind: Namespace
          state: present
+ 
      - name: create nginx deploy
        k8s:
          state: present
